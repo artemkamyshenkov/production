@@ -1,16 +1,14 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { App } from './App';
-import { createRoot } from 'react-dom/client';
-import ThemeProvider from './theme/ThemeProvider';
+import {render} from "react-dom";
+import App from "./app/App";
+import {BrowserRouter} from "react-router-dom";
+import {ThemeProvider} from "app/providers/ThemeProvider";
 
-const root = createRoot(document.getElementById('root') as HTMLElement);
-root.render(
-  <React.StrictMode>
+
+render(
     <BrowserRouter>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+        <ThemeProvider>
+            <App />
+        </ThemeProvider>
+    </BrowserRouter>,
+    document.getElementById('root')
+)
