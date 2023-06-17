@@ -16,15 +16,14 @@ const Button: React.FC<ButtonProps> = ({
   children,
   theme,
   ...props
-}) => {
-  return (
-    <button
-      className={classNames(styles.Button, {}, [className, styles[theme]])}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+}) => (
+  <button
+    type="button"
+    className={classNames(styles.Button, {}, [className, styles[theme]])}
+    {...props}
+  >
+    {children}
+  </button>
+);
 
 export default Button;

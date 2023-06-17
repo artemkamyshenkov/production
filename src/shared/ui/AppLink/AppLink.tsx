@@ -16,13 +16,11 @@ export const AppLink: FC<AppLinkProps> = ({
   children,
   to,
   theme = AppLickTheme.PRIMARY,
-}) => {
-  return (
-    <Link
-      to={to}
-      className={classNames(styles.appLink, {}, [className, styles[theme]])}
-    >
-      {children}
-    </Link>
-  );
-};
+}) => (
+  <Link
+    to={to}
+    className={classNames(styles.appLink, {}, [className, styles[theme]])}
+  >
+    {children}
+  </Link>
+);
