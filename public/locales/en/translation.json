@@ -5,5 +5,7 @@
   "Язык": "English",
   "Главная": "Main",
   "О сайте": "About us",
-  "Страница не найдена": "Page not found"
+  "Страница не найдена": "Page not found",
+  "Произошла непредвиденная ошибка": "Sorry, we have unexpected error",
+  "Обновить страницу": "Reload page"
 }
