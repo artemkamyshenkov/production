@@ -1,28 +1,25 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink } from 'shared/ui/AppLink';
-import { AppLickTheme } from 'shared/ui/AppLink/AppLink';
+import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
-import styles from './Navbar.module.scss';
+import cls from './Navbar.module.scss';
 
 interface NavbarProps {
-  className?: string;
+    className?: string;
 }
+
 export const Navbar = ({ className }: NavbarProps) => {
-  const { t, i18n } = useTranslation();
-  return (
-    <div className={classNames(styles.navbar)}>
-      <div className={classNames(styles.links)}>
-        <AppLink
-          to="/"
-          className={classNames(styles.mainLink, {}, [className])}
-          theme={AppLickTheme.SECONDARY}
-        >
-          {t('Главная')}
-        </AppLink>
-        <AppLink to="/about" theme={AppLickTheme.SECONDARY}>
-          {t('О сайте')}
-        </AppLink>
-      </div>
-    </div>
-  );
+    const { t } = useTranslation();
+
+    return (
+        <div className={classNames(cls.Navbar, {}, [className])}>
+            <div className={cls.links}>
+                <AppLink theme={AppLinkTheme.SECONDARY} to="/" className={cls.mainLink}>
+                    {t('Главная')}
+                </AppLink>
+                <AppLink theme={AppLinkTheme.RED} to="/about">
+                    {t('О сайте')}
+                </AppLink>
+            </div>
+        </div>
+    );
 };
