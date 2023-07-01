@@ -35,6 +35,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'object-curly-newline': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    'wrap-iife': 'off',
     'i18next/no-literal-string': [
       'error',
       {
