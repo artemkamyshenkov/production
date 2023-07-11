@@ -1,25 +1,35 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import cls from './Navbar.module.scss';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Modal } from 'shared/ui/Modal';
+import styles from './Navbar.module.scss';
 
 interface NavbarProps {
-    className?: string;
+  className?: string;
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
   const { t } = useTranslation();
+  const [openAuthModal, setOpenAuthModal] = useState(false);
 
+  const handleAuthModalOpen = useCallback(
+    () => setOpenAuthModal((prev) => !prev),
+    [],
+  );
   return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
-      <div className={cls.links}>
-        <AppLink theme={AppLinkTheme.SECONDARY} to="/" className={cls.mainLink}>
-          {t('Главная')}
-        </AppLink>
-        <AppLink theme={AppLinkTheme.RED} to="/about">
-          {t('О сайте')}
-        </AppLink>
-      </div>
+    <div className={classNames(styles.Navbar, {}, [className])}>
+      <Button
+        className={styles.links}
+        theme={ThemeButton.OUTLINE}
+        onClick={handleAuthModalOpen}
+      >
+        {t('Войти')}
+      </Button>
+
+      <Modal isOpen={openAuthModal} onClose={handleAuthModalOpen}>
+        {t(' Lorem ipsum dolor sit amet consectetur adipisicing elit.')}
+      </Modal>
     </div>
   );
 };
