@@ -41,9 +41,10 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'no-param-reassign': 'off',
+    'react/prop-types': 'off',
     'implicit-arrow-linebreak': 'off',
     'i18next/no-literal-string': [
-      'error',
+      'warn',
       {
         markupOnly: true,
         ignoreAttribute: ['data-testid', 'to'],

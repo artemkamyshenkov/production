@@ -1,3 +1,4 @@
+import { useTheme } from 'app/providers/ThemeProvider';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Portal } from 'shared/ui/Portal/Portal';
@@ -8,6 +9,7 @@ interface IModalProps {
   children?: React.ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
+  lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
@@ -17,9 +19,10 @@ export const Modal: React.FC<IModalProps> = ({
   children,
   isOpen,
   onClose,
+  lazy,
 }) => {
   const [isClosing, setIsClosing] = useState(false);
-
+  const [isMounted, setIsMounted] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
   const mods: Record<string, boolean> = {
@@ -59,6 +62,15 @@ export const Modal: React.FC<IModalProps> = ({
     };
   }, [isOpen, handleEscDown]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
+
+  if (lazy && !isMounted) {
+    return null;
+  }
   return (
     <Portal>
       {' '}
