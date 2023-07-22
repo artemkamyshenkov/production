@@ -7,6 +7,7 @@ import { Input } from 'shared/ui/Input/Input';
 import { loginActions } from 'features/AuthByUsername/model/slice/loginSlice';
 import { getLoginState } from 'features/AuthByUsername/model/selectors/getLoginState/getLoginState';
 import { loginByUsername } from 'features/AuthByUsername/services/loginByUsername/loginByUsername';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import styles from './LoginForm.module.scss';
 
 interface LoginFormProps {
@@ -16,7 +17,7 @@ interface LoginFormProps {
 export const LoginForm: React.FC<LoginFormProps> = memo(({ className }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { username, password, errors, isLoading } = useSelector(getLoginState);
+  const { username, password, error, isLoading } = useSelector(getLoginState);
   const onChangeUsername = useCallback(
     (value: string) => {
       dispatch(loginActions.setUsername(value));
@@ -32,10 +33,9 @@ export const LoginForm: React.FC<LoginFormProps> = memo(({ className }) => {
   const onLoginClick = useCallback(() => {
     dispatch(loginByUsername({ username, password }));
   }, [dispatch, username, password]);
-  // 21.31
   return (
     <div className={classNames(styles.LoginForm, {}, [className])}>
-      {errors && <div>{errors}</div>}
+      {error && <Text text={error} theme={TextTheme.ERROR} />}
       <Input
         className={styles.input}
         placeholder="Введите имя пользователя"
